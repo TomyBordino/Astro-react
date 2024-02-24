@@ -8,7 +8,7 @@ import { ItemListContainer } from './components/itemListContainer/ItemListContai
 
 
 function App() {
-  const saludo = 'Hola Chicos'
+  
   return (
     <div>
       <Navbar />
