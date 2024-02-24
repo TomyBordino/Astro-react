@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import solo si se usa Codigo Bootstrap Comun
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+//---------------------------------------------
+import Navbar from './components/navbar/NavbarAstro';
+import { ItemListContainer } from './components/itemListContainer/ItemListContainer';
+
 
 function App() {
+  const saludo = 'Hola Chicos'
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <ItemListContainer greeting="Bienvenidos a la tienda" />
     </div>
   );
 }
-
+//npm start (para levantar la pagina)
+// CTRL + D Selecciona todo lo que se llama igual
 export default App;
