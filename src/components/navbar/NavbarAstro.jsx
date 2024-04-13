@@ -10,8 +10,13 @@ import { Offcanvas } from 'react-bootstrap';
 import logo from '../../imagenes/Logo.png'
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 
 const NavbarAstro = () => {
+  const { cart } = useContext(CartContext)
+  console.log(cart, "En el navbar")
+
   return (
 
     <>
@@ -48,7 +53,9 @@ const NavbarAstro = () => {
                 </Nav>
                 <Form className="d-flex me-5 confRightHeader align-items-center">
                   <IoPersonCircleSharp className='iconPosition' />
-                  <CartWidget counter={11} />
+                  <NavLink to="/cart">
+                    <CartWidget/>
+                  </NavLink>
 
                   <Form.Control
                     type="search"

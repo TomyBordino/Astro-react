@@ -1,4 +1,4 @@
-const productos =
+/*const productos =
 [{
     id:"1",
     nombre:'Buzo Astro White',
@@ -47,6 +47,6 @@ export const getProducts = () =>{
             }else{
                 resolve(productos)
             }
-        },10)
+        },1000)
     })
-}
+}*/

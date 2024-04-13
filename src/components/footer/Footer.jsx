@@ -1,8 +1,8 @@
 import './footer.css'
 import logo from '../../imagenes/Logo.png'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
-
+//<link href="/sobreNosotros">Sobre Nosotros</link>
 const Footer = () => {
     return (
 
@@ -13,10 +13,11 @@ const Footer = () => {
                 </div>
                 <div class="col-12 col-md-6 col-xl-4 menuFooter">
                     <h3>Menu</h3>
+                    
+                    <Link className='link' to="/sobreNosotros">Sobre Nosotros</Link>
+                    <Link className='link' to="/contacto">Contacto</Link>
+                    <Link className='link' to="/ayuda">Ayuda</Link>
 
-                    <a as={Link}>Sobre Nosotros</a>
-                    <a as={Link}>Contacto</a>
-                    <a as={Link}>Ayuda</a>
                 </div>
                 <div className="col-12 col-md-6 col-xl-3 menuFooter">
                     <h3>Redes Sociales</h3>

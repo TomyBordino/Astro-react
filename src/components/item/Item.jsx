@@ -15,7 +15,7 @@ const Item = ({producto}) => {
             </div>
 
             <div className="ps-2 priceConf">
-                <p>{producto.precio}</p>
+                <p>${producto.precio}</p>
             </div>
             <div className="CajaProductosShopShadow ps-2">
                 <button onClick={() => navegar(`/item/${producto.id}`)} className="buttonShop">COMPRAR</button>

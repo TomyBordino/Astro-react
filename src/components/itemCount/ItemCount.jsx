@@ -2,12 +2,9 @@ import React from "react"
 import { useState } from "react"
 
 
-const ItemCount = ({stock}) => {
+const ItemCount = ({stock, onAdd}) => {
     const [count, setCount] = useState(1)
 
-    const onAdd = () =>{
-        //Completar Funcion
-    }
 
     const sumar = () => {
         if(count < stock){
@@ -22,6 +19,11 @@ const ItemCount = ({stock}) => {
         }
         
     }
+
+    const enviarCantidad = () =>{
+        onAdd(count)
+    }
+
     return (
         <>
             <div className="d-flex justify-content-center">
@@ -29,7 +31,7 @@ const ItemCount = ({stock}) => {
                 <span className="btn">{count}</span>
                 <button className="btn btn-success" onClick={sumar}>+</button>
             </div>
-            <button className="btn btn-primary d-flex textcenter">Comprar</button>
+            <button className="btn btn-primary d-flex textcenter"disabled={stock===0 || count === 0 } onClick={enviarCantidad}>Comprar</button>
         </>
     )
 }

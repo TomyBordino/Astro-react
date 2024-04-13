@@ -8,20 +8,28 @@ import Navbar from './components/navbar/NavbarAstro';
 import { ItemListContainer } from './components/itemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import Cart from './components/cart/Cart';
+import Checkout from './components/checkout/Checkout';
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Navbar/>
-      
-      <Routes>
-        <Route path='/' element={ <ItemListContainer greeting="Bienvenidos a la tienda"/>} />
-        <Route path='/categorias/:categoriaId' element={<ItemListContainer/>} />
-        <Route path='/item/:itemId' element={<ItemDetailContainer />}/>
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Navbar />
+
+        <Routes>
+          <Route path='/' element={<ItemListContainer greeting="Bienvenidos a la tienda" />} />
+          <Route path='/categorias/:categoriaId' element={<ItemListContainer />} />
+          <Route path='/item/:itemId' element={<ItemDetailContainer />} />
+          <Route path='/cart' element={<Cart/>} />
+          <Route path='/checkout' element={<Checkout/>}/>
+        </Routes>
+        
+        <Footer />
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 //npm start (para levantar la pagina)
