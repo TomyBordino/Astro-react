@@ -5,12 +5,12 @@ export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
-    console.log(cart)
+    
 
     //Agregar x cantidad de un item al carrito
     const addItem = (item, quantity) =>{
         if(isInCart(item.id)){
-            console.log("Ya existe")
+            
             const nuevoCarrito = cart.map((compra) => {
                 if(compra.id === item.id){
                     return{...compra, quantity: compra.quantity+ quantity}

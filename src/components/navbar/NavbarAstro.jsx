@@ -15,7 +15,7 @@ import { CartContext } from '../../context/CartContext';
 
 const NavbarAstro = () => {
   const { cart } = useContext(CartContext)
-  console.log(cart, "En el navbar")
+  
 
   return (
 
