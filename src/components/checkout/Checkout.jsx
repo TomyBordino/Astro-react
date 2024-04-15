@@ -8,16 +8,27 @@ import "./checkout.css"
 
 const Checkout = () => {
 
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState({})
     const [ValidateEmail, setValidateEmail] = useState('')
     const { cart, cartPriceTotal, clear } = useContext(CartContext)
     const [orderId, setOrderId] = useState('')
 
+    const userData = (e) => {
+        setUser(
+            {
+                ...user,
+                [e.target.name]: e.target.value
+                
+            }
+        )
+    }
+
+
     const finalizarCompra = (e) => {
         e.preventDefault()
-        if (!user.name && !user.lastname && !user.email) {
+        if(!user.name || !user.lastname || !user.email) {
             alert("Porfavor Complete todos los campos")
-        } else if (user.email !== user.secondEmail) {
+        } else if (user.email !== ValidateEmail) {
             alert("Verifique que sus emails son iguales")
         } else {
             //Objeto de La Orden
@@ -32,28 +43,19 @@ const Checkout = () => {
             //Se agrega el documento
             addDoc(ventas, order)
                 .then((res) => {
-                    cart.forEach((item) =>{
-                        const docRef = doc(db,"productos", item.id)
+                    cart.forEach((item) => {
+                        const docRef = doc(db, "productos", item.id)
                         getDoc(docRef)
-                        .then((dbDoc)=>{
-                            updateDoc(docRef,{stock: dbDoc.data().stock - item.quantity})
-                        })
+                            .then((dbDoc) => {
+                                updateDoc(docRef, { stock: dbDoc.data().stock - item.quantity })
+                            })
                     })
-                    
+
                     setOrderId(res.id)
                     clear()
                 })
                 .catch((error) => console.log(error))
         }
-    }
-
-    const userData = (e) => {
-        setUser(
-            {
-                ...user,
-                [e.target.name]: e.target.value
-            }
-        )
     }
 
 
@@ -70,10 +72,10 @@ const Checkout = () => {
                     <form className="form" onSubmit={finalizarCompra}>
                         <p className="heading">Formulario de Contacto</p>
                         <input name="name" className="input2" placeholder="Nombre" type="text" onChange={userData} />
-                        <input name="lastname" className="input2" placeholder="Apellido" type="text" nChange={userData} />
-                        <input name="email" className="input2" placeholder="Email" type="email" nChange={userData} />
-                        <input name="secondEmail" className="input2" placeholder="Repita su Email" type="email" nChange={userData} />
-                        <input name="phone" className="input2" placeholder="Telefono" type="tel" nChange={userData} />
+                        <input name="lastname" className="input2" placeholder="Apellido" type="text" onChange={userData} />
+                        <input name="email" className="input2" placeholder="Email" type="email" onChange={userData} />
+                        <input name="secondEmail" className="input2" placeholder="Repita su Email" type="email" onChange={(e) => setValidateEmail(e.target.value)}/>
+                        <input name="phone" className="input2" placeholder="Telefono" type="tel" onChange={userData} />
                         <button className="btn" type="submit">Enviar</button>
                     </form>
 
